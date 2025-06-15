@@ -3,7 +3,6 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { forwardRef, useRef } from "react";
 
-import { Backdrop } from "../backdrop";
 import { type BoxProps } from "../box";
 import { FocusBookmarkProvider } from "../focus-bookmark";
 import { ModalProvider } from "../modal";
@@ -26,10 +25,7 @@ const mapPositionToTransitionSide = {
 } as const;
 
 export const AsideContent = forwardRef<HTMLDivElement, AsideContentProps>(
-  (
-    { children, className, position = "right", size = "md", style, ...props },
-    outerRef,
-  ) => {
+  ({ children, className, position = "right", style, ...props }, outerRef) => {
     const { nestedDialogCount, open } = useDialogContext(
       "@optiaxiom/react/AsideContent",
     );
@@ -40,24 +36,13 @@ export const AsideContent = forwardRef<HTMLDivElement, AsideContentProps>(
     return (
       <TransitionGroup open={open}>
         <Portal asChild>
-          <Transition>
-            <Backdrop
-              asChild
-              {...styles.backdrop({ hidden: nestedDialogCount > 0 })}
-            >
-              <RadixDialog.Overlay forceMount />
-            </Backdrop>
-          </Transition>
-        </Portal>
-
-        <Portal asChild>
           <Transition
             data-side={mapPositionToTransitionSide[position]}
-            type="pop"
+            type="fade"
           >
             <Paper
               asChild
-              elevation={size === "fullscreen" ? "screen" : "dialog"}
+              elevation="screen"
               onBlur={onReactSelectInputBlur}
               style={{
                 ...assignInlineVars({
@@ -65,7 +50,7 @@ export const AsideContent = forwardRef<HTMLDivElement, AsideContentProps>(
                 }),
                 ...style,
               }}
-              {...styles.content({ position, size }, className)}
+              {...styles.content({ position }, className)}
               {...props}
             >
               <RadixDialog.Content forceMount ref={ref}>

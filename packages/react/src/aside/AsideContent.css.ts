@@ -26,41 +26,14 @@ export const content = recipe({
       flexDirection: "column",
     },
     style({
-      left: "50%",
-      maxHeight: "75dvh",
-      maxWidth: "calc(100dvw - 2 * 24px)",
       position: "fixed",
-      top: "12dvh",
       transform: `
         translateY(calc(1rem * ${nestedDialogCountVar}))
         scale(calc(1 - 0.06 * ${nestedDialogCountVar}))
       `,
-      translate: "-50% 0",
     }),
   ],
   variants: {
-    /**
-     * Control the size/width of the dialog box.
-     */
-    size: {
-      sm: style({
-        width: "400px",
-      }),
-      md: style({
-        width: "clamp(600px, 50%, 800px)",
-      }),
-      lg: style({
-        width: "clamp(900px, 75%, 1400px)",
-      }),
-      fullscreen: style({
-        height: "100dvh",
-        maxHeight: "none",
-        maxWidth: "none",
-        top: "0",
-        width: "100dvw",
-      }),
-    },
-
     /**
      * Control the position of the dialog box.
      */
@@ -85,7 +58,7 @@ export const content = recipe({
           left: 0,
           maxWidth: ["100%", "lg"],
           top: 0,
-          width: ["100%", "75%"],
+          width: ["100%", "50%"],
         }),
       ],
       right: [
@@ -98,7 +71,7 @@ export const content = recipe({
           maxWidth: ["100%", "lg"],
           right: 0,
           top: 0,
-          width: ["100%", "75%"],
+          width: ["100%", "50%"],
         }),
       ],
     },
