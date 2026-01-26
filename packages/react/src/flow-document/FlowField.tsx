@@ -32,6 +32,7 @@ export function FlowField({
       inputId={inputId}
       label={label}
       required={required}
+      w="full"
     >
       {children}
     </Field>

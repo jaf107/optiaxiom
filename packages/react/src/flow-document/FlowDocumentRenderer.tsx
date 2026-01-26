@@ -214,7 +214,7 @@ export function FlowDocumentRenderer({
   };
 
   return (
-    <Card>
+    <Card flexDirection="column" gap="16" w="full">
       {element.children.map((child, index) => renderNode(child, index))}
       {renderActions(element.actions)}
     </Card>
